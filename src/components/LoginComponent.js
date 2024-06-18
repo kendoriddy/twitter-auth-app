@@ -1,3 +1,5 @@
+import TwitterLogin from "react-twitter-auth";
+
 const LoginComponent = () => {
   const handleTwitterLogin = (data) => {
     if (data.err) {
