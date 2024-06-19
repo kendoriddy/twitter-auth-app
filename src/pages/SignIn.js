@@ -5,16 +5,6 @@ import { toast } from "react-toastify";
 import styles from "../styles/App.module.css";
 
 const SignIn = ({ onSignIn, onTwitterSignIn }) => {
-  const handleSignIn = async () => {
-    try {
-      const result = await signInWithPopup(auth, provider);
-      const user = result.user;
-      onSignIn(user.email, user.displayName);
-    } catch (error) {
-      toast.error("Failed to sign in with Google. Please try again.");
-    }
-  };
-
   const handleSignInWithTwitter = async () => {
     const provider = new TwitterAuthProvider();
     signInWithPopup(auth, provider)
@@ -36,9 +26,6 @@ const SignIn = ({ onSignIn, onTwitterSignIn }) => {
 
   return (
     <div className={styles.card}>
-      <button className={styles.button} onClick={handleSignIn}>
-        Sign In with Google
-      </button>
       <button className={styles.button} onClick={handleSignInWithTwitter}>
         Sign In with Twitter
       </button>

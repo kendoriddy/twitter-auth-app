@@ -3,7 +3,6 @@ import axios from "axios";
 import { generateOTP } from "../utils/generateOTP";
 import { getOAuthHeaders } from "../utils/twitterAuth";
 import { useNavigate } from "react-router-dom";
-import styles from "../styles/App.module.css";
 
 const TwitterOtpDisplay = ({ twitterUser }) => {
   const [otp, setOtp] = useState("");
@@ -62,11 +61,11 @@ const TwitterOtpDisplay = ({ twitterUser }) => {
   };
 
   return (
-    <div className={styles.otpContainer}>
+    <div style={styles.otpContainer}>
       <img
         src={twitterUser.photoURL}
         alt={twitterUser.displayName}
-        className={styles.img}
+        style={styles.img}
       />
       <p>Name: {twitterUser.displayName}</p>
       <p>Your OTP has been sent to your Twitter DM!</p>
@@ -75,13 +74,50 @@ const TwitterOtpDisplay = ({ twitterUser }) => {
         value={enteredOtp}
         onChange={handleOtpChange}
         placeholder="Enter OTP"
-        className={styles.textInput}
+        style={styles.textInput}
       />
-      <button onClick={handleOtpSubmit} className={styles.submitButton}>
+      <button onClick={handleOtpSubmit} style={styles.submitButton}>
         Submit OTP
       </button>
     </div>
   );
+};
+
+const styles = {
+  otpContainer: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    gap: "20px",
+    padding: "20px",
+    border: "1px solid #ccc",
+    borderRadius: "8px",
+    maxWidth: "400px",
+    margin: "auto",
+    backgroundColor: "#f9f9f9",
+  },
+  img: {
+    width: "100px",
+    height: "100px",
+    borderRadius: "50%",
+    objectFit: "cover",
+  },
+  textInput: {
+    padding: "10px",
+    border: "1px solid #ccc",
+    borderRadius: "4px",
+    width: "calc(100% - 22px)",
+    boxSizing: "border-box",
+  },
+  submitButton: {
+    padding: "10px 20px",
+    backgroundColor: "#007bff",
+    color: "white",
+    border: "none",
+    borderRadius: "4px",
+    cursor: "pointer",
+    transition: "background-color 0.3s",
+  },
 };
 
 export default TwitterOtpDisplay;
